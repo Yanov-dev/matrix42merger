@@ -4,7 +4,7 @@
     {
         public int TargetSource { get; set; }
 
-        public string SourceId { get; set; }
+        public object SourceId { get; set; }
 
         public string Name { get; set; }
 

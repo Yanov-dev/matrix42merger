@@ -4,6 +4,6 @@ namespace Matrix42Merger.Repositories
 {
     public interface ISourcesRepository
     {
-        void Add(SourceModel model);
+        void Add(Source source);
     }
 }
