@@ -169,8 +169,6 @@
     </Compile>
     <Compile Include="Models\MergeDbContext.cs" />
     <Compile Include="Dbo\MergedEntityDbModel.cs" />
-    <Compile Include="Models\MergedEntity.cs" />
-    <Compile Include="Models\Source.cs" />
     <Compile Include="Dbo\SourceDbModel.cs" />
     <Compile Include="Options\Auth\HardcoredAuthOptions.cs" />
     <Compile Include="Options\Auth\IAuthOptions.cs" />
@@ -196,6 +194,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Matrix42merger.Domain\Matrix42merger.Domain.csproj">
+      <Project>{792a4d87-3fe5-4fbd-91f0-5c09b09789a0}</Project>
+      <Name>Matrix42merger.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Matrix42Merger.Dto\Matrix42Merger.Dto.csproj">
       <Project>{c93268c2-dda9-404d-9858-a8c909a8345f}</Project>
       <Name>Matrix42Merger.Dto</Name>

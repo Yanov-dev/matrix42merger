@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Matrix42Merger.Models;
+using Matrix42merger.Domain;
 
 namespace Matrix42Merger.Repositories.MergedEntities
 {

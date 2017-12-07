@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Matrix42Merger.Models
+namespace Matrix42merger.Domain
 {
     public class MergedEntity
     {
+        public MergedEntity()
+        {
+            Sources = new List<Source>();
+        }
+
         public string CommonCriteria { get; set; }
 
         public string Date { get; set; }
@@ -16,11 +19,6 @@ namespace Matrix42Merger.Models
         public int MergedTargetSource { get; set; }
 
         public List<Source> Sources { get; set; }
-
-        public MergedEntity()
-        {
-            Sources = new List<Source>();
-        }
 
         public void AddSource(Source source)
         {
@@ -37,7 +35,7 @@ namespace Matrix42Merger.Models
 
         private int GetTargetSourceFlag(int targetSource)
         {
-            return (int)Math.Pow(targetSource, 2);
+            return (int) Math.Pow(targetSource, 2);
         }
     }
 }

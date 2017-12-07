@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Matrix42Merger.Dbo
 {
-    internal class SourceDbModel
+    public class SourceDbModel
     {
         [Key]
         public Guid Id { get; set; }

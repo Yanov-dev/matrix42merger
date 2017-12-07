@@ -1,7 +1,8 @@
 ﻿using System.Web.Http;
 using AutoMapper;
+using Matrix42merger.Domain;
+using Matrix42Merger.Dbo;
 using Matrix42Merger.Dto;
-using Matrix42Merger.Models;
 
 namespace Matrix42Merger
 {
@@ -13,16 +14,21 @@ namespace Matrix42Merger
 
             // Web API routes
 
-            Mapper.Initialize(e => e.CreateMap<SourceDto, Source>());
-            //Mapper.Initialize(e => e.CreateMap<Source, SourceDbModel>());
+            Mapper.Initialize(e =>
+            {
+                e.CreateMap<SourceDto, Source>(MemberList.Destination);
+                e.CreateMap<Source, SourceDbModel>(MemberList.Destination);
+                e.CreateMap<Source, MergedEntity>(MemberList.Destination);
 
+                e.CreateMap<MergedEntity, MergedEntityDbModel>(MemberList.Destination);
+            });
 
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{controller}/{id}",
-                new { id = RouteParameter.Optional }
+                new {id = RouteParameter.Optional}
             );
         }
     }

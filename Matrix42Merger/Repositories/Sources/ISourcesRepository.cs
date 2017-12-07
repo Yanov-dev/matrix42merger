@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Matrix42Merger.Models;
+﻿using System.Threading.Tasks;
+using Matrix42merger.Domain;
 
-namespace Matrix42Merger.Repositories
+namespace Matrix42Merger.Repositories.Sources
 {
     public interface ISourcesRepository
     {

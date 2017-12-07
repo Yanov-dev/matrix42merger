@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using AutoMapper;
+using Matrix42merger.Domain;
 using Matrix42Merger.Dbo;
 using Matrix42Merger.Models;
 
@@ -25,10 +24,7 @@ namespace Matrix42Merger.Repositories.MergedEntities
             if (mergedEntity == null)
                 throw new ArgumentNullException(nameof(mergedEntity));
 
-            var dbModel = Mapper.Map<MergedEntityDbModel>(mergedEntity);
-
-            _mergeDbContext.MergedEntities.Add(dbModel);
-            await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
+            await AddOrUpdate(mergedEntity).ConfigureAwait(false);
         }
 
         public async Task Update(MergedEntity mergedEntity)
@@ -36,11 +32,7 @@ namespace Matrix42Merger.Repositories.MergedEntities
             if (mergedEntity == null)
                 throw new ArgumentNullException(nameof(mergedEntity));
 
-            var dbModel = Mapper.Map<MergedEntityDbModel>(mergedEntity);
-
-            // where is update method?
-            _mergeDbContext.MergedEntities.AddOrUpdate(dbModel);
-            await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
+            await AddOrUpdate(mergedEntity).ConfigureAwait(false);
         }
 
         public async Task<MergedEntity> GetById(Guid id)
@@ -65,6 +57,15 @@ namespace Matrix42Merger.Repositories.MergedEntities
                 return null;
 
             return Mapper.Map<MergedEntity>(dbModel);
+        }
+
+        private async Task AddOrUpdate(MergedEntity mergedEntity)
+        {
+            var dbModel = Mapper.Map<MergedEntityDbModel>(mergedEntity);
+
+            // where is update method?
+            _mergeDbContext.MergedEntities.AddOrUpdate(dbModel);
+            await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
         }
     }
 }

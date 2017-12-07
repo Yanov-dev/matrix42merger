@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Matrix42merger.Domain;
 using Matrix42Merger.Dbo;
 using Matrix42Merger.Models;
 using Matrix42Merger.Repositories.MergedEntities;
 using Unity.Attributes;
 
-namespace Matrix42Merger.Repositories
+namespace Matrix42Merger.Repositories.Sources
 {
     public class SourcesRepository : ISourcesRepository
     {
         private readonly MergeDbContext _mergeDbContext;
 
-        [Dependency]
-        public IMergedEntitiesRepository MergedEntitiesRepository { get; set; }
-
         public SourcesRepository(MergeDbContext mergeDbContext)
         {
-            _mergeDbContext = mergeDbContext;
+            _mergeDbContext = new MergeDbContext();
         }
+
+        [Dependency]
+        public IMergedEntitiesRepository MergedEntitiesRepository { get; set; }
 
         public async Task Add(Source source)
         {
@@ -32,22 +31,24 @@ namespace Matrix42Merger.Repositories
             if (await GetSource(source.TargetSource, source.SourceId) != null)
                 return;
 
-            var entity = await MergedEntitiesRepository.GetByCommonCreteria(source.CommonCriteria).ConfigureAwait(false);
-
-            if (entity == null)
-            {
-                entity = new MergedEntity();
-                await MergedEntitiesRepository.Add(entity).ConfigureAwait(false);
-            }
-
             var sourceDbModel = Mapper.Map<SourceDbModel>(source);
             sourceDbModel.Id = Guid.NewGuid();
-
-            entity.AddSource(source);
-
             _mergeDbContext.Sources.Add(sourceDbModel);
 
-            await MergedEntitiesRepository.Update(entity).ConfigureAwait(false);
+            var entity = await MergedEntitiesRepository.GetByCommonCreteria(source.CommonCriteria)
+                .ConfigureAwait(false);
+
+            var isNew = entity == null;
+            if (isNew)
+                entity = new MergedEntity();
+
+            Mapper.Map(source, entity);
+            entity.AddSource(source);
+
+            if (isNew)
+                await MergedEntitiesRepository.Add(entity).ConfigureAwait(false);
+            else
+                await MergedEntitiesRepository.Update(entity).ConfigureAwait(false);
 
             await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
         }

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Matrix42Merger.Models;
 
 namespace Matrix42Merger.Dbo
 {
-    internal class MergedEntityDbModel
+    public class MergedEntityDbModel
     {
         [Key]
         public Guid Id { get; set; }
