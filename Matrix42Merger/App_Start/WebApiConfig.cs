@@ -1,4 +1,7 @@
 ﻿using System.Web.Http;
+using AutoMapper;
+using Matrix42Merger.Dto;
+using Matrix42Merger.Models;
 
 namespace Matrix42Merger
 {
@@ -9,12 +12,15 @@ namespace Matrix42Merger
             // Web API configuration and services
 
             // Web API routes
+
+            Mapper.Initialize(e => e.CreateMap<SourceDto, Source>());
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{controller}/{id}",
-                new {id = RouteParameter.Optional}
+                new { id = RouteParameter.Optional }
             );
         }
     }

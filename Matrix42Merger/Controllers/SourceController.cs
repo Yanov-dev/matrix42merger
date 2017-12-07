@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
+using AutoMapper;
 using Matrix42Merger.Dto;
+using Matrix42Merger.Models;
 using Matrix42Merger.Repositories;
-using Matrix42Merger.Services.AuthService;
 using Unity.Attributes;
 
 namespace Matrix42Merger.Controllers
@@ -16,7 +18,14 @@ namespace Matrix42Merger.Controllers
         [HttpPost]
         public async Task Post(SourceDto sourceDto)
         {
-            //SourcesRepository.Add();
+            var mutex = new Mutex();
+
+            mutex.WaitOne();
+
+            var source = Mapper.Map<Source>(sourceDto);
+            await SourcesRepository.Add(source).ConfigureAwait(false);
+
+            mutex.ReleaseMutex();
         }
     }
 }

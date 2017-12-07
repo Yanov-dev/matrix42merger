@@ -168,9 +168,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MergeDbContext.cs" />
-    <Compile Include="Models\MergedEntry.cs" />
+    <Compile Include="Models\MergedEntity.cs" />
     <Compile Include="Models\Source.cs" />
-    <Compile Include="Models\SourceModel.cs" />
     <Compile Include="Options\Auth\HardcoredAuthOptions.cs" />
     <Compile Include="Options\Auth\IAuthOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

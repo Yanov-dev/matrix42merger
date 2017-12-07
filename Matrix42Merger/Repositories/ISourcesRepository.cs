@@ -1,9 +1,10 @@
-﻿using Matrix42Merger.Models;
+﻿using System.Threading.Tasks;
+using Matrix42Merger.Models;
 
 namespace Matrix42Merger.Repositories
 {
     public interface ISourcesRepository
     {
-        void Add(Source source);
+        Task Add(Source source);
     }
 }
