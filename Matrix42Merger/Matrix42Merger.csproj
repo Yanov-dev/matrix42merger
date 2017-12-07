@@ -168,14 +168,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MergeDbContext.cs" />
+    <Compile Include="Dbo\MergedEntityDbModel.cs" />
     <Compile Include="Models\MergedEntity.cs" />
     <Compile Include="Models\Source.cs" />
+    <Compile Include="Dbo\SourceDbModel.cs" />
     <Compile Include="Options\Auth\HardcoredAuthOptions.cs" />
     <Compile Include="Options\Auth\IAuthOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JwtAuthorize.cs" />
-    <Compile Include="Repositories\ISourcesRepository.cs" />
-    <Compile Include="Repositories\SourcesRepository.cs" />
+    <Compile Include="Repositories\MergedEntities\IMergedEntitiesRepository.cs" />
+    <Compile Include="Repositories\MergedEntities\MergedEntitiesRepository.cs" />
+    <Compile Include="Repositories\Sources\ISourcesRepository.cs" />
+    <Compile Include="Repositories\Sources\SourcesRepository.cs" />
     <Compile Include="Services\AuthService\AuthService.cs" />
     <Compile Include="Services\AuthService\IAuthService.cs" />
   </ItemGroup>

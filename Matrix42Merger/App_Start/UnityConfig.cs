@@ -1,6 +1,7 @@
 using System;
 using Matrix42Merger.Options.Auth;
 using Matrix42Merger.Repositories;
+using Matrix42Merger.Repositories.MergedEntities;
 using Matrix42Merger.Services.AuthService;
 using Unity;
 
@@ -46,6 +47,7 @@ namespace Matrix42Merger
             container.RegisterType<IAuthService, AuthService>();
             container.RegisterType<IAuthOptions, HardcoredAuthOptions>();
             container.RegisterType<ISourcesRepository, SourcesRepository>();
+            container.RegisterType<IMergedEntitiesRepository, MergedEntitiesRepository>();
         }
     }
 }

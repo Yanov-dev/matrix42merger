@@ -14,6 +14,8 @@ namespace Matrix42Merger
             // Web API routes
 
             Mapper.Initialize(e => e.CreateMap<SourceDto, Source>());
+            //Mapper.Initialize(e => e.CreateMap<Source, SourceDbModel>());
+
 
             config.MapHttpAttributeRoutes();
 
