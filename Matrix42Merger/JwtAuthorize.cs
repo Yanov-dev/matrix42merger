@@ -6,17 +6,17 @@ namespace Matrix42Merger
 {
     public class JwtAuthorize : AuthorizeAttribute
     {
-        private readonly IAuthService _authService;
+        public IAuthService AuthService { get; set; }
 
-        public JwtAuthorize(IAuthService authService)
+        public JwtAuthorize()
         {
-            _authService = authService;
         }
 
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            var token = actionContext.Request.Headers.GetValues("token");
             return true;
+            var token = actionContext.Request.Headers.GetValues("token");
+            
         }
     }
 }
