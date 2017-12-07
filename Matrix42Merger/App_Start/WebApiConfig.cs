@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using Matrix42Merger.Services.AuthService;
 
 namespace Matrix42Merger
 {

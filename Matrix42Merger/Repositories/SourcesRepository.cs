@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Matrix42Merger.Models;
+﻿using Matrix42Merger.Models;
 
 namespace Matrix42Merger.Repositories
 {
@@ -12,7 +8,6 @@ namespace Matrix42Merger.Repositories
 
         public void Add(SourceModel model)
         {
-            
         }
     }
 }

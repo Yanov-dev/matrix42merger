@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Matrix42Merger.Dto
+﻿namespace Matrix42Merger.Dto
 {
     public class SourceDto
     {
