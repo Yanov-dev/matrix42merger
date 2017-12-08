@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Matrix42merger.Domain;
+using Matrix42Merger.Contexts;
 using Matrix42Merger.Dbo;
-using Matrix42Merger.Models;
 using Matrix42Merger.Repositories.MergedEntities;
 using Unity.Attributes;
 
@@ -17,7 +17,7 @@ namespace Matrix42Merger.Repositories.Sources
 
         public SourcesRepository(MergeDbContext mergeDbContext)
         {
-            _mergeDbContext = new MergeDbContext();
+            _mergeDbContext = mergeDbContext;
         }
 
         [Dependency]

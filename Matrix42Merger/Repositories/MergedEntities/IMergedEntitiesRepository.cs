@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Matrix42merger.Domain;
 
@@ -13,5 +14,7 @@ namespace Matrix42Merger.Repositories.MergedEntities
         Task<MergedEntity> GetById(Guid id);
 
         Task<MergedEntity> GetByCommonCreteria(string commonCreteria);
+
+        Task<List<MergedEntity>> GetAll();
     }
 }

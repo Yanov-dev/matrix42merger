@@ -3,10 +3,10 @@
 namespace Matrix42Merger.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class Test_SourceController
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Test_PostData()
         {
         }
     }

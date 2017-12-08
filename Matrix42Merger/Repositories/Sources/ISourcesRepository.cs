@@ -5,10 +5,10 @@ namespace Matrix42Merger.Repositories.Sources
 {
     public interface ISourcesRepository
     {
-        Task Add(Source sourceDbModel);
+        Task Add(Source source);
 
-        Task Update(Source sourceDbModel);
+        Task Update(Source source);
 
-        Task Delete(Source sourceDbModel);
+        Task Delete(Source source);
     }
 }

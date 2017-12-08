@@ -167,7 +167,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\MergeDbContext.cs" />
+    <Compile Include="Contexts\MergeDbContext.cs" />
     <Compile Include="Dbo\MergedEntityDbModel.cs" />
     <Compile Include="Dbo\SourceDbModel.cs" />
     <Compile Include="Options\Auth\HardcoredAuthOptions.cs" />

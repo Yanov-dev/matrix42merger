@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Matrix42merger.Domain;
+using Matrix42Merger.Contexts;
 using Matrix42Merger.Dbo;
-using Matrix42Merger.Models;
 
 namespace Matrix42Merger.Repositories.MergedEntities
 {
@@ -57,6 +58,13 @@ namespace Matrix42Merger.Repositories.MergedEntities
                 return null;
 
             return Mapper.Map<MergedEntity>(dbModel);
+        }
+
+        public async Task<List<MergedEntity>> GetAll()
+        {
+            var dbModels = await _mergeDbContext.MergedEntities.ToListAsync().ConfigureAwait(false);
+
+            return Mapper.Map<List<MergedEntity>>(dbModels);
         }
 
         private async Task AddOrUpdate(MergedEntity mergedEntity)

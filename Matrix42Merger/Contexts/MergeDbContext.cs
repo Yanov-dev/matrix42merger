@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Matrix42Merger.Dbo;
 
-namespace Matrix42Merger.Models
+namespace Matrix42Merger.Contexts
 {
     public class MergeDbContext : DbContext
     {
