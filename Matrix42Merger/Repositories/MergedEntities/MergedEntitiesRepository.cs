@@ -23,7 +23,6 @@ namespace Matrix42Merger.Repositories.MergedEntities
         public async Task<MergedEntity> GetById(Guid id)
         {
             var entity = await _mergeDbContext.MergedEntities.FindAsync(id).ConfigureAwait(false);
-
             if (entity == null)
                 return null;
 
@@ -32,12 +31,10 @@ namespace Matrix42Merger.Repositories.MergedEntities
 
         public async Task<MergedEntity> GetByCommonCreteria(string commonCreteria)
         {
-            var dbModel = await _mergeDbContext
-                .MergedEntities
-                .Where(e => e.CommonCriteria.Equals(commonCreteria))
-                .FirstOrDefaultAsync()
-                .ConfigureAwait(false);
+            if (string.IsNullOrEmpty(commonCreteria))
+                throw new ArgumentNullException(nameof(commonCreteria));
 
+            var dbModel = await GetDbModelByCommonCreteria(commonCreteria).ConfigureAwait(false);
             if (dbModel == null)
                 return null;
 
@@ -56,11 +53,24 @@ namespace Matrix42Merger.Repositories.MergedEntities
             if (mergedEntity == null)
                 throw new ArgumentNullException(nameof(mergedEntity));
 
+            var id = (await GetDbModelByCommonCreteria(mergedEntity.CommonCriteria))?.Id ?? Guid.NewGuid();
+
             var dbModel = Mapper.Map<MergedEntityDbModel>(mergedEntity);
+            dbModel.Id = id;
 
             // where is update method?
             _mergeDbContext.MergedEntities.AddOrUpdate(dbModel);
             await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
+        }
+
+        private async Task<MergedEntityDbModel> GetDbModelByCommonCreteria(string commonCreteria)
+        {
+            var res = await _mergeDbContext
+                .MergedEntities
+                .Where(e => e.CommonCriteria.Equals(commonCreteria))
+                .FirstOrDefaultAsync()
+                .ConfigureAwait(false);
+            return res;
         }
     }
 }

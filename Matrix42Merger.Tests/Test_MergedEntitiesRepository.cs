@@ -3,7 +3,7 @@ using AutoMapper;
 using Matrix42merger.Domain;
 using Matrix42Merger.App_Start;
 using Matrix42Merger.Dbo;
-using Matrix42Merger.Repositories.Sources;
+using Matrix42Merger.Repositories.MergedEntities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -12,46 +12,72 @@ namespace Matrix42Merger.Tests
     [TestClass]
     public class Test_MergedEntitiesRepository
     {
+        //----------------------------------------
+        // Engine not suppot AddOrUpdate method
+        //----------------------------------------
+
+        //[TestMethod]
+        //public void Test_AddOrUpdate()
+        //{
+        //    MapperConfig.Register();
+        //    var mockEngine = new MockEngine();
+        //    var repository = new MergedEntitiesRepository(mockEngine.Context);
+
+        //    var entity = new MergedEntity
+        //    {
+        //        CommonCriteria = "cc",
+        //        Date = "2017.01.01",
+        //        Name = "name1",
+        //        MergedTargetSource = 2
+        //    };
+
+        //    repository.AddOrUpdate(entity).Wait();
+
+        //    mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Once());
+        //}
+
+        //[TestMethod]
+        //public void Test_GetByCreteria()
+        //{
+        //    MapperConfig.Register();
+
+        //    var list = new List<MergedEntityDbModel>();
+
+        //    var mockEngine = new MockEngine(mergedEntityList: list);
+        //    var repository = new MergedEntitiesRepository(mockEngine.Context);
+
+        //    var entity = new MergedEntity
+        //    {
+        //        CommonCriteria = "cc",
+        //        Date = "2017.01.01",
+        //        Name = "name1",
+        //        MergedTargetSource = 2
+        //    };
+
+        //    repository.AddOrUpdate(entity).Wait();
+        //    list.Add(Mapper.Map<MergedEntityDbModel>(entity));
+
+        //    var result = repository.GetByCommonCreteria("cc").Result;
+        //    if (result == null)
+        //        Assert.Fail("result must be not null");
+        //}
+
         [TestMethod]
-        public void Test_AddOrUpdate()
+        public void Test_AddOrUpdate_Exception()
         {
             MapperConfig.Register();
 
-            var sourceList = new List<SourceDbModel>();
-            var mockEngine = new MockEngine(sourceList);
+            var mockEngine = new MockEngine();
+            var repository = new MergedEntitiesRepository(mockEngine.Context);
 
-            var repository = new SourcesRepository(mockEngine.Context);
-
-            var s1 = new Source
+            try
             {
-                CommonCriteria = "cc",
-                Date = "2017.01.01",
-                Name = "name1",
-                SourceId = "123",
-                TargetSource = 1
-            };
-
-            var s2 = new Source
+                repository.AddOrUpdate(null).Wait();
+                Assert.Fail("must be exception");
+            }
+            catch
             {
-                CommonCriteria = "cc",
-                Date = "2017.01.01",
-                Name = "name1",
-                SourceId = "1234",
-                TargetSource = 1
-            };
-
-            repository.Add(s1).Wait();
-            sourceList.Add(Mapper.Map<SourceDbModel>(s1));
-
-            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Once());
-
-            repository.Add(s1).Wait();
-
-            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Once());
-
-            repository.Add(s2).Wait();
-
-            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Exactly(2));
+            }
         }
     }
 }

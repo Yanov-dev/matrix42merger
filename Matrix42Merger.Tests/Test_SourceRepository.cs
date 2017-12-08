@@ -74,6 +74,25 @@ namespace Matrix42Merger.Tests
         }
 
         [TestMethod]
+        public void Test_Delete_Exeption()
+        {
+            MapperConfig.Register();
+
+            var mockEngine = new MockEngine();
+
+            var repository = new SourcesRepository(mockEngine.Context);
+
+            try
+            {
+                repository.Delete(null).Wait();
+                Assert.Fail("must be exception");
+            }
+            catch
+            {
+            }
+        }
+
+        [TestMethod]
         public void Test_Delete()
         {
             MapperConfig.Register();

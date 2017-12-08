@@ -26,6 +26,7 @@ namespace Matrix42Merger.Tests
 
             _mock = new Mock<MergeDbContext>();
             _mock.Setup(c => c.Sources).Returns(SourcesDbSet.Object);
+            _mock.Setup(c => c.MergedEntities).Returns(MergedEntitiesDbSet.Object);
         }
 
         public MergeDbContext Context => _mock.Object;
