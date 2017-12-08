@@ -7,9 +7,7 @@ namespace Matrix42Merger.Repositories.MergedEntities
 {
     public interface IMergedEntitiesRepository
     {
-        Task Add(MergedEntity mergedEntity);
-
-        Task Update(MergedEntity mergedEntity);
+        Task AddOrUpdate(MergedEntity mergedEntity);
 
         Task<MergedEntity> GetById(Guid id);
 

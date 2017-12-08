@@ -20,22 +20,6 @@ namespace Matrix42Merger.Repositories.MergedEntities
             _mergeDbContext = mergeDbContext;
         }
 
-        public async Task Add(MergedEntity mergedEntity)
-        {
-            if (mergedEntity == null)
-                throw new ArgumentNullException(nameof(mergedEntity));
-
-            await AddOrUpdate(mergedEntity).ConfigureAwait(false);
-        }
-
-        public async Task Update(MergedEntity mergedEntity)
-        {
-            if (mergedEntity == null)
-                throw new ArgumentNullException(nameof(mergedEntity));
-
-            await AddOrUpdate(mergedEntity).ConfigureAwait(false);
-        }
-
         public async Task<MergedEntity> GetById(Guid id)
         {
             var entity = await _mergeDbContext.MergedEntities.FindAsync(id).ConfigureAwait(false);
@@ -67,8 +51,11 @@ namespace Matrix42Merger.Repositories.MergedEntities
             return Mapper.Map<List<MergedEntity>>(dbModels);
         }
 
-        private async Task AddOrUpdate(MergedEntity mergedEntity)
+        public async Task AddOrUpdate(MergedEntity mergedEntity)
         {
+            if (mergedEntity == null)
+                throw new ArgumentNullException(nameof(mergedEntity));
+
             var dbModel = Mapper.Map<MergedEntityDbModel>(mergedEntity);
 
             // where is update method?

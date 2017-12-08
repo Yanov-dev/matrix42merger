@@ -19,14 +19,14 @@ namespace Matrix42Merger.Tests
             _sources[GetLocalId(source)] = source;
         }
 
-        public async Task Update(Source source)
-        {
-            _sources[GetLocalId(source)] = source;
-        }
-
         public async Task Delete(Source source)
         {
             _sources.Remove(GetLocalId(source));
+        }
+
+        public async Task Update(Source source)
+        {
+            _sources[GetLocalId(source)] = source;
         }
 
         private string GetLocalId(Source source)

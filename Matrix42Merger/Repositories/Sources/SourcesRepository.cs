@@ -34,33 +34,20 @@ namespace Matrix42Merger.Repositories.Sources
             var sourceDbModel = Mapper.Map<SourceDbModel>(source);
             sourceDbModel.Id = Guid.NewGuid();
             _mergeDbContext.Sources.Add(sourceDbModel);
-
-            var entity = await MergedEntitiesRepository.GetByCommonCreteria(source.CommonCriteria)
-                .ConfigureAwait(false);
-
-            var isNew = entity == null;
-            if (isNew)
-                entity = new MergedEntity();
-
-            Mapper.Map(source, entity);
-            entity.AddSource(source);
-
-            if (isNew)
-                await MergedEntitiesRepository.Add(entity).ConfigureAwait(false);
-            else
-                await MergedEntitiesRepository.Update(entity).ConfigureAwait(false);
-
             await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        public Task Update(Source sourceDbModel)
+        public async Task Delete(Source source)
         {
-            throw new NotImplementedException();
-        }
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
 
-        public Task Delete(Source sourceDbModel)
-        {
-            throw new NotImplementedException();
+            var sourceDbModel = await GetSource(source.TargetSource, source.SourceId).ConfigureAwait(false);
+            if (sourceDbModel != null)
+            {
+                _mergeDbContext.Sources.Remove(sourceDbModel);
+                await _mergeDbContext.SaveChangesAsync().ConfigureAwait(false);
+            }
         }
 
         private async Task<SourceDbModel> GetSource(int targetSourceId, string sourceId)

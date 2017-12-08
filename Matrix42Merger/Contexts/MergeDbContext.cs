@@ -5,8 +5,8 @@ namespace Matrix42Merger.Contexts
 {
     public class MergeDbContext : DbContext
     {
-        public DbSet<SourceDbModel> Sources { get; set; }
+        public virtual DbSet<SourceDbModel> Sources { get; set; }
 
-        public DbSet<MergedEntityDbModel> MergedEntities { get; set; }
+        public virtual DbSet<MergedEntityDbModel> MergedEntities { get; set; }
     }
 }

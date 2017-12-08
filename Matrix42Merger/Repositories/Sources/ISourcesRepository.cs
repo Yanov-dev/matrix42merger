@@ -7,8 +7,6 @@ namespace Matrix42Merger.Repositories.Sources
     {
         Task Add(Source source);
 
-        Task Update(Source source);
-
         Task Delete(Source source);
     }
 }

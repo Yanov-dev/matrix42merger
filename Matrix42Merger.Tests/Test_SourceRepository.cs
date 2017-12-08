@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Matrix42merger.Domain;
-using Matrix42Merger.Contexts;
-using Matrix42Merger.Repositories.MergedEntities;
+using Matrix42Merger.App_Start;
+using Matrix42Merger.Dbo;
 using Matrix42Merger.Repositories.Sources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity;
+using Moq;
 
 namespace Matrix42Merger.Tests
 {
@@ -14,13 +15,12 @@ namespace Matrix42Merger.Tests
         [TestMethod]
         public void Test_Add()
         {
-            var container = new UnityContainer();
+            MapperConfig.Register();
 
-            container.RegisterType<IMergedEntitiesRepository, MergedEntitiesRepository>();
-            container.RegisterType<ISourcesRepository, SourcesRepository>();
+            var sourceList = new List<SourceDbModel>();
+            var mockEngine = new MockEngine(sourceList);
 
-            var rep = container.Resolve<ISourcesRepository>();
-            var context = container.Resolve<MergeDbContext>();
+            var repository = new SourcesRepository(mockEngine.Context);
 
             var s1 = new Source
             {
@@ -40,17 +40,18 @@ namespace Matrix42Merger.Tests
                 TargetSource = 1
             };
 
-            rep.Add(s1).Wait();
+            repository.Add(s1).Wait();
+            sourceList.Add(Mapper.Map<SourceDbModel>(s1));
 
-            Assert.AreEqual(1, context.Sources.Count());
+            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Once());
 
-            rep.Add(s1).Wait();
+            repository.Add(s1).Wait();
 
-            Assert.AreEqual(1, context.Sources.Count());
+            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Once());
 
-            rep.Add(s2).Wait();
+            repository.Add(s2).Wait();
 
-            Assert.AreEqual(2, context.Sources.Count());
+            mockEngine.SourcesDbSet.Verify(m => m.Add(It.IsAny<SourceDbModel>()), Times.Exactly(2));
         }
     }
 }
