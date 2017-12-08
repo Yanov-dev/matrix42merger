@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Matrix42Merger.Dto;
 using Newtonsoft.Json;
 
@@ -12,10 +11,9 @@ namespace Matrix42Merger.Spamer
 {
     public class HostSpamer
     {
+        private const string BaseUrl = "http://localhost:52428";
         private readonly string _sourcePath;
         private readonly int _targetSourceId;
-
-        private const string BaseUrl = "http://localhost:52428";
 
         public HostSpamer(string sourcePath, int targetSourceId)
         {
@@ -34,10 +32,43 @@ namespace Matrix42Merger.Spamer
             var requestLoginDictionary = new Dictionary<string, string>
             {
                 ["username"] = "1",
-                ["password"] = "1",
+                ["password"] = "1"
             };
 
-            var response = httpClient.PostAsync($"{BaseUrl}/api/account", new FormUrlEncodedContent(requestLoginDictionary)).Result;
+            var loginInfo = new UserLoginInfo
+            {
+                UserName = "1",
+                Password = "1"
+            };
+
+            var response = httpClient.PostAsync(
+                $"{BaseUrl}/api/account",
+                new StringContent(
+                    JsonConvert.SerializeObject(loginInfo),
+                    Encoding.UTF8,
+                    "application/json")).Result;
+
+            var content = response.Content.ReadAsStringAsync().Result;
+
+            var loginResult = JsonConvert.DeserializeObject<LoginResult>(content);
+
+            var token = loginResult.AccessToken;
+            httpClient.DefaultRequestHeaders.Add("token", token);
+            foreach (var source in sources)
+            {
+                response = httpClient.PostAsync(
+                    $"{BaseUrl}/api/source",
+                    new StringContent(
+                        JsonConvert.SerializeObject(source),
+                        Encoding.UTF8,
+                        "application/json")).Result;
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Console.WriteLine($"Error - {response.StatusCode}");
+                    return;
+                }
+            }
         }
     }
 }

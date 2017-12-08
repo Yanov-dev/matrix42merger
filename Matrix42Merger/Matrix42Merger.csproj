@@ -181,6 +181,8 @@
     <Compile Include="Repositories\MergedEntities\MergedEntitiesRepository.cs" />
     <Compile Include="Repositories\Sources\ISourcesRepository.cs" />
     <Compile Include="Repositories\Sources\SourcesRepository.cs" />
+    <Compile Include="Repositories\UserLogin\HardcoreUserRepository.cs" />
+    <Compile Include="Repositories\UserLogin\IUserRepository.cs" />
     <Compile Include="Services\AuthService\AuthService.cs" />
     <Compile Include="Services\AuthService\IAuthService.cs" />
   </ItemGroup>

@@ -11,6 +11,7 @@ using Unity.Attributes;
 
 namespace Matrix42Merger.Controllers
 {
+    [JwtAuthorize]
     [Route("api/source")]
     public class SourceController : ApiController
     {

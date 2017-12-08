@@ -1,1 +1,32 @@
-[{"SourceId": "CE1133CA-E406-44FE-B9EF-094388A6940E", "Name": "SOMENAME1", "Date": "01.01.2017", "CommonCriteria": "012345678910"},{"SourceId": "33F37F97-D2AE-49E5-82DE-870AA1985DB6", "Name": "SOMENAME2", "Date": "02.01.2017", "CommonCriteria": "100123456789"},{"SourceId": "C617FE1B-945E-4CE4-B86A-FC3FB47EFFBA", "Name": "SOMENAME3", "Date": "04.01.2017", "CommonCriteria": "910012345678"},{"SourceId": "D6720D5B-3625-4552-925A-B0B6F9DA3855", "Name": "SOMENAME4", "Date": "05.01.2017", "CommonCriteria": "891001234567"},{"SourceId": "88722EEE-A81C-4201-A19A-0F2C26FD459D", "Name": "SOMENAME5", "Date": "06.01.2017", "CommonCriteria": "789100123456"}]
+[
+  {
+    "SourceId": "CE1133CA-E406-44FE-B9EF-094388A6940E",
+    "Name": "SOMENAME1",
+    "Date": "01.01.2017",
+    "CommonCriteria": "012345678910"
+  },
+  {
+    "SourceId": "33F37F97-D2AE-49E5-82DE-870AA1985DB6",
+    "Name": "SOMENAME2",
+    "Date": "02.01.2017",
+    "CommonCriteria": "100123456789"
+  },
+  {
+    "SourceId": "C617FE1B-945E-4CE4-B86A-FC3FB47EFFBA",
+    "Name": "SOMENAME3",
+    "Date": "04.01.2017",
+    "CommonCriteria": "910012345678"
+  },
+  {
+    "SourceId": "D6720D5B-3625-4552-925A-B0B6F9DA3855",
+    "Name": "SOMENAME4",
+    "Date": "05.01.2017",
+    "CommonCriteria": "891001234567"
+  },
+  {
+    "SourceId": "88722EEE-A81C-4201-A19A-0F2C26FD459D",
+    "Name": "SOMENAME5",
+    "Date": "06.01.2017",
+    "CommonCriteria": "789100123456"
+  }
+]

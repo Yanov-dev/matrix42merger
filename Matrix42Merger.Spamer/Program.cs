@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Matrix42Merger.Spamer
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var list = new List<HostSpamer>();
 
@@ -19,7 +17,7 @@ namespace Matrix42Merger.Spamer
 
             var tasks = new Task[list.Count];
 
-            for (int i = 0; i < list.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
                 var localIndex = i;
                 tasks[i] = Task.Run(() => { list[localIndex].Start(); });

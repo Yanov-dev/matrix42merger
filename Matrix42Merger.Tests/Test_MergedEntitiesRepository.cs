@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-using Matrix42merger.Domain;
-using Matrix42Merger.App_Start;
-using Matrix42Merger.Dbo;
+﻿using Matrix42Merger.App_Start;
 using Matrix42Merger.Repositories.MergedEntities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Matrix42Merger.Tests
 {
