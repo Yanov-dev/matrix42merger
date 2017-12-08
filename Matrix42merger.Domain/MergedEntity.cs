@@ -30,7 +30,7 @@ namespace Matrix42merger.Domain
 
         private int GetTargetSourceFlag(int targetSource)
         {
-            return (int) Math.Pow(targetSource, 2);
+            return (int) Math.Pow(2, targetSource);
         }
     }
 }
