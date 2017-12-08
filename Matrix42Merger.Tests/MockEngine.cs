@@ -13,9 +13,16 @@ namespace Matrix42Merger.Tests
     {
         private readonly Mock<MergeDbContext> _mock;
 
-        public MockEngine(List<SourceDbModel> sourceList)
+        public MockEngine(List<SourceDbModel> sourceList = null, List<MergedEntityDbModel> mergedEntityList = null)
         {
+            if (sourceList == null)
+                sourceList = new List<SourceDbModel>();
+
+            if (mergedEntityList == null)
+                mergedEntityList = new List<MergedEntityDbModel>();
+
             SourcesDbSet = InitDbSet(sourceList.AsQueryable());
+            MergedEntitiesDbSet = InitDbSet(mergedEntityList.AsQueryable());
 
             _mock = new Mock<MergeDbContext>();
             _mock.Setup(c => c.Sources).Returns(SourcesDbSet.Object);
@@ -24,6 +31,8 @@ namespace Matrix42Merger.Tests
         public MergeDbContext Context => _mock.Object;
 
         public Mock<DbSet<SourceDbModel>> SourcesDbSet { get; }
+
+        public Mock<DbSet<MergedEntityDbModel>> MergedEntitiesDbSet { get; }
 
         private Mock<DbSet<T>> InitDbSet<T>(IQueryable<T> data) where T : class
         {
