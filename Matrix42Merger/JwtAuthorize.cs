@@ -12,7 +12,7 @@ namespace Matrix42Merger
 
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            var token = actionContext.Request.Headers.GetValues("token");
+            //var token = actionContext.Request.Headers.GetValues("token");
             return true;
         }
     }

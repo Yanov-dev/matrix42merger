@@ -139,13 +139,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeSourceRepository.cs" />
     <Compile Include="Internal\TestDbAsyncEnumerable.cs" />
     <Compile Include="Internal\TestDbAsyncEnumerator.cs" />
     <Compile Include="Internal\TestDbAsyncQueryProvider.cs" />
     <Compile Include="MockEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_MergedEntitiesRepository.cs" />
     <Compile Include="Test_SourceController.cs" />
     <Compile Include="Test_SourceRepository.cs" />
   </ItemGroup>

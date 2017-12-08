@@ -68,6 +68,8 @@ namespace Matrix42Merger.Spamer
                     Console.WriteLine($"Error - {response.StatusCode}");
                     return;
                 }
+
+                Console.WriteLine($"TargetSourceId {_targetSourceId} done. source id {source.SourceId}");
             }
         }
     }

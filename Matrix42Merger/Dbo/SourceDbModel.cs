@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Matrix42Merger.Dbo
 {
@@ -14,5 +15,10 @@ namespace Matrix42Merger.Dbo
         [Required]
         [MaxLength(50)]
         public string SourceId { get; set; }
+
+        public Guid MergedEntityDbModelId { get; set; }
+
+        [ForeignKey("MergedEntityDbModelId")]
+        public virtual MergedEntityDbModel MergedEntity { get; set; }
     }
 }
