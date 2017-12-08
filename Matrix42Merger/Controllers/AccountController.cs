@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace Matrix42Merger.Controllers
 {
@@ -6,8 +7,10 @@ namespace Matrix42Merger.Controllers
     public class AccountController : ApiController
     {
         [HttpPost]
-        public string Login()
+        public async Task<string> Post()
         {
+            var username = Request.Headers.GetValues("username");
+            var password = Request.Headers.GetValues("password");
             return "OK";
         }
     }

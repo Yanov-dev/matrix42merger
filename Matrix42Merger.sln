@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix42Merger.Tests", "Mat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrix42Merger.Dto", "Matrix42Merger.Dto\Matrix42Merger.Dto.csproj", "{C93268C2-DDA9-404D-9858-A8C909A8345F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix42merger.Domain", "Matrix42merger.Domain\Matrix42merger.Domain.csproj", "{792A4D87-3FE5-4FBD-91F0-5C09B09789A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrix42merger.Domain", "Matrix42merger.Domain\Matrix42merger.Domain.csproj", "{792A4D87-3FE5-4FBD-91F0-5C09B09789A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix42Merger.Spamer", "Matrix42Merger.Spamer\Matrix42Merger.Spamer.csproj", "{DC966B63-C636-4BF1-8649-4576B4A354B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{792A4D87-3FE5-4FBD-91F0-5C09B09789A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{792A4D87-3FE5-4FBD-91F0-5C09B09789A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{792A4D87-3FE5-4FBD-91F0-5C09B09789A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC966B63-C636-4BF1-8649-4576B4A354B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC966B63-C636-4BF1-8649-4576B4A354B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC966B63-C636-4BF1-8649-4576B4A354B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC966B63-C636-4BF1-8649-4576B4A354B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
